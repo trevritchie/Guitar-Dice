@@ -332,3 +332,38 @@ button:hover {
         content: attr(data-mobile);
     }
 }
+
+/* Help button styles */
+.help-button {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 0.85rem;
+    opacity: 0.6;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    cursor: pointer;
+}
+
+.help-button:hover {
+    opacity: 0.8;
+}
+
+/* Hide/show elements based on screen size */
+.desktop-only {
+    display: block;
+}
+
+.mobile-only {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .desktop-only {
+        display: none;
+    }
+    
+    .mobile-only {
+        display: block;
+    }
+}

@@ -51,22 +51,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const guitarDice = new GuitarDice();
     const modal = document.getElementById('helpModal');
     const closeBtn = document.getElementsByClassName('close')[0];
+    const helpButton = document.getElementById('helpButton');
 
     // Function to construct the exercise sentence with different formats for desktop/mobile
     function constructSentence(exercise) {
         const fretWithSuffix = exercise.fret + getOrdinalSuffix(exercise.fret);
         const stringWithSuffix = exercise.string + getOrdinalSuffix(exercise.string);
         
-        // Desktop format - three lines with chord type on same line as chord tone
+        // Determine correct article based on whether voicing starts with a vowel
+        const article = /^[aeiou]/i.test(exercise.voicing) ? 'an' : 'a';
+        
+        // Desktop format
         const desktopFormat = `Play the ${fretWithSuffix} fret on the ${stringWithSuffix} string.\n` +
                              `Make this note the ${exercise.chordTone} of a ${exercise.chordType} chord\n` +
-                             `in a ${exercise.voicing} voicing.`;
+                             `in ${article} ${exercise.voicing} voicing.`;
         
-        // Mobile format - four lines with chord type on separate line
+        // Mobile format
         const mobileFormat = `Play the ${fretWithSuffix} fret on the ${stringWithSuffix} string.\n` +
                             `Make this note the ${exercise.chordTone}\n` +
                             `of a ${exercise.chordType} chord\n` +
-                            `in a ${exercise.voicing} voicing.`;
+                            `in ${article} ${exercise.voicing} voicing.`;
         
         return { desktopFormat, mobileFormat };
     }
@@ -133,4 +137,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.onclick = (e) => {
         if (e.target === modal) modal.style.display = 'none';
     };
+
+    // Event handler for help button clicks
+    helpButton.addEventListener('click', () => {
+        modal.style.display = 'block';
+    });
 }); 
