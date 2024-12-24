@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Basic meta tags for character encoding and mobile responsiveness -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    
+    <!-- Page title with emojis -->
     <title>🎸 Guitar Dice 🎲</title>
+    
+    <!-- Link to external stylesheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Main container for all content -->
     <div class="container">
+        <!-- Title section -->
         <div class="title">
             <h1>🎸 Guitar Dice 🎲</h1>
         </div>
         
+        <!-- Main content grid: exercise box on left, controls on right -->
         <div class="exercise-container">
+            <!-- Left side: Exercise results in table format -->
             <div class="exercise-box">
+                <!-- Each exercise-item is a row in the table -->
                 <div class="exercise-item">
                     <label>Fret</label>
                     <span id="fret">-</span>
@@ -36,10 +46,14 @@
                 </div>
             </div>
             
+            <!-- Right side: Sentence display and controls -->
             <div class="right-side">
+                <!-- Area for displaying the constructed sentence -->
                 <div class="exercise-sentence">
+                    <!-- Sentence will be displayed here with different formats for mobile/desktop -->
                     <p id="sentenceDisplay"></p>
                 </div>
+                <!-- Controls section: Roll button and instructions -->
                 <div class="buttons">
                     <button id="rollButton">Roll 🎲</button>
                     <div class="instructions">
@@ -51,8 +65,10 @@
         </div>
     </div>
 
+    <!-- Help modal (hidden by default) -->
     <div id="helpModal" class="modal">
         <div class="modal-content">
+            <!-- Close button for modal -->
             <span class="close">&times;</span>
             <h2>How It Works</h2>
             <p>Guitar Dice generates random exercises to help you:</p>
@@ -66,6 +82,7 @@
         </div>
     </div>
 
+    <!-- Link to external JavaScript file -->
     <script src="script.js"></script>
 </body>
 </html> 

@@ -1,32 +1,38 @@
+// Main class that handles the guitar exercise logic
 class GuitarDice {
     constructor() {
+        // Initialize arrays of possible values for each parameter
         this.chordTypes = ["Major 6", "Minor 6", "Dominant 7", "Dominant 7 b5"];
-        this.chordTones6 = ["Root", "Third", "Fifth", "Sixth"];
-        this.chordTones7 = ["Root", "Third", "Fifth", "Seventh"];
+        this.chordTones6 = ["Root", "Third", "Fifth", "Sixth"];  // Chord tones for 6th chords
+        this.chordTones7 = ["Root", "Third", "Fifth", "Seventh"];  // Chord tones for 7th chords
         this.voicings = ["Unison", "Third", "Triad", "Shell", "Octave", "Drop 2", "Drop 3", "Drop 2 and 4", "Double Octave"];
     }
 
+    // Helper function to generate random integer between min and max (inclusive)
     randomInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
+    // Main function to generate a random exercise
     roll() {
         const string = this.randomInt(1, 6);
         let fret = this.randomInt(0, 12);
         const chordType = this.chordTypes[this.randomInt(0, this.chordTypes.length - 1)];
         const voicing = this.voicings[this.randomInt(0, this.voicings.length - 1)];
         
-        // Handle double octave voicing string restrictions
+        // Handle physical limitations for double octave voicings
+        // Double octaves aren't possible starting on strings 2 or 5
         if (voicing === "Double Octave") {
             if (string === 5) return { ...this.roll(), string: 6 };
             if (string === 2) return { ...this.roll(), string: 1 };
         }
 
-        // Handle physical possibilities for certain voicings
+        // Adjust fret position for certain voicings that need more room
         if (fret < 4 && ["Third", "Triad", "Shell", "Octave"].includes(voicing)) {
             fret += 4;
         }
 
+        // Select appropriate chord tones based on chord type (6th or 7th)
         const chordTones = chordType.includes("6") ? this.chordTones6 : this.chordTones7;
         const chordTone = chordTones[this.randomInt(0, chordTones.length - 1)];
 
@@ -40,22 +46,32 @@ class GuitarDice {
     }
 }
 
-// Initialize the app
+// Initialize the app when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
     const guitarDice = new GuitarDice();
     const modal = document.getElementById('helpModal');
     const closeBtn = document.getElementsByClassName('close')[0];
 
+    // Function to construct the exercise sentence with different formats for desktop/mobile
     function constructSentence(exercise) {
-        const firstLine = exercise.fret === 0 
-            ? `Play the open ${exercise.string}${getOrdinalSuffix(exercise.string)} string.`
-            : `Play the ${exercise.fret}${getOrdinalSuffix(exercise.fret)} fret on the ${exercise.string}${getOrdinalSuffix(exercise.string)} string.`;
-        const secondLine = `Make this note the ${exercise.chordTone} of a ${exercise.chordType} chord`;
-        const thirdLine = `in a ${exercise.voicing} voicing.`;
+        const fretWithSuffix = exercise.fret + getOrdinalSuffix(exercise.fret);
+        const stringWithSuffix = exercise.string + getOrdinalSuffix(exercise.string);
         
-        return `${firstLine}\n${secondLine}\n${thirdLine}`;
+        // Desktop format - three lines with chord type on same line as chord tone
+        const desktopFormat = `Play the ${fretWithSuffix} fret on the ${stringWithSuffix} string.\n` +
+                             `Make this note the ${exercise.chordTone} of a ${exercise.chordType} chord\n` +
+                             `in a ${exercise.voicing} voicing.`;
+        
+        // Mobile format - four lines with chord type on separate line
+        const mobileFormat = `Play the ${fretWithSuffix} fret on the ${stringWithSuffix} string.\n` +
+                            `Make this note the ${exercise.chordTone}\n` +
+                            `of a ${exercise.chordType} chord\n` +
+                            `in a ${exercise.voicing} voicing.`;
+        
+        return { desktopFormat, mobileFormat };
     }
 
+    // Helper function to add appropriate ordinal suffix (1st, 2nd, 3rd, etc.)
     function getOrdinalSuffix(number) {
         const j = number % 10,
               k = number % 100;
@@ -71,22 +87,24 @@ document.addEventListener('DOMContentLoaded', () => {
         return "th";
     }
 
+    // Function to update all display elements with new exercise values
     function updateDisplay(exercise) {
-        // Update the table values
+        // Update the table values with highlight animation
         Object.keys(exercise).forEach(key => {
             const element = document.getElementById(key);
             element.textContent = exercise[key];
             
-            // Add highlight animation
+            // Add highlight animation by removing and re-adding class
             element.classList.remove('highlight');
-            void element.offsetWidth; // Trigger reflow
+            void element.offsetWidth; // Trigger reflow to restart animation
             element.classList.add('highlight');
         });
 
-        // Update the sentence
+        // Update the sentence with appropriate format for device type
         const sentenceElement = document.getElementById('sentenceDisplay');
-        const [firstLine, secondLine, thirdLine] = constructSentence(exercise).split('\n');
-        sentenceElement.innerHTML = `${firstLine}<br>${secondLine}<br>${thirdLine}`;
+        const sentences = constructSentence(exercise);
+        sentenceElement.setAttribute('data-desktop', sentences.desktopFormat);
+        sentenceElement.setAttribute('data-mobile', sentences.mobileFormat);
         
         // Add highlight animation to sentence
         sentenceElement.classList.remove('highlight');
@@ -94,23 +112,23 @@ document.addEventListener('DOMContentLoaded', () => {
         sentenceElement.classList.add('highlight');
     }
 
-    // Roll button click handler
+    // Event handler for roll button clicks
     document.getElementById('rollButton').addEventListener('click', () => {
         updateDisplay(guitarDice.roll());
     });
 
-    // Keyboard controls
+    // Keyboard event handlers
     document.addEventListener('keydown', (e) => {
         if (e.code === 'Space') {
-            e.preventDefault();
+            e.preventDefault(); // Prevent page scroll
             updateDisplay(guitarDice.roll());
         } else if (e.code === 'Escape') {
-            // Toggle the modal visibility
+            // Toggle help modal visibility
             modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
         }
     });
 
-    // Modal controls
+    // Modal close handlers
     closeBtn.onclick = () => modal.style.display = 'none';
     window.onclick = (e) => {
         if (e.target === modal) modal.style.display = 'none';

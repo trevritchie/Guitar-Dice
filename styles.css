@@ -1,12 +1,14 @@
+/* CSS Variables for consistent theming */
 :root {
-    --primary-color: #2c3e50;
-    --secondary-color: #34495e;
-    --accent-color: #e74c3c;
-    --text-color: #ecf0f1;
-    --highlight-color: #2ecc71;
-    --mobile-breakpoint: 768px;  /* Common breakpoint for tablets/mobile */
+    --primary-color: #2c3e50;      /* Dark blue background */
+    --secondary-color: #34495e;     /* Lighter blue for boxes */
+    --accent-color: #e74c3c;        /* Red for buttons */
+    --text-color: #ecf0f1;          /* Light gray for text */
+    --highlight-color: #2ecc71;     /* Green for animations */
+    --mobile-breakpoint: 768px;     /* Breakpoint for mobile devices */
 }
 
+/* Base body styles */
 body {
     margin: 0;
     padding: 0;
@@ -19,6 +21,7 @@ body {
     align-items: center;
 }
 
+/* Main container styles */
 .container {
     text-align: center;
     padding: 2rem;
@@ -26,16 +29,18 @@ body {
     width: 100%;
 }
 
+/* Title styles */
 .title h1 {
     font-size: 3rem;
     margin-bottom: 2rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+/* Grid layout for main content */
 .exercise-container {
     margin: 2rem 0;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;  /* Two equal columns */
     gap: 2rem;
     align-items: center;
     max-width: 1200px;
@@ -43,6 +48,7 @@ body {
     margin-right: auto;
 }
 
+/* Styles for the exercise box (left side) */
 .exercise-box {
     background-color: var(--secondary-color);
     padding: 1.5rem;
@@ -53,6 +59,7 @@ body {
     justify-self: end;
 }
 
+/* Right side container styles */
 .right-side {
     display: flex;
     flex-direction: column;
@@ -62,31 +69,36 @@ body {
     position: relative;
 }
 
+/* Individual row in the exercise box */
 .exercise-item {
     margin: 0.5rem 0;
     font-size: 1.2rem;
     display: grid;
-    grid-template-columns: 120px 200px;
+    grid-template-columns: 120px 200px;  /* Label and value columns */
     align-items: center;
     padding: 0.8rem 1.5rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     transition: background-color 0.2s;
 }
 
+/* Remove border from last row */
 .exercise-item:last-child {
     border-bottom: none;
 }
 
+/* Hover effect for rows */
 .exercise-item:hover {
     background-color: rgba(255, 255, 255, 0.05);
 }
 
+/* Label styles in exercise box */
 .exercise-item label {
     font-weight: 500;
     color: rgba(255, 255, 255, 0.8);
     text-align: left;
 }
 
+/* Value styles in exercise box */
 .exercise-item span {
     font-size: 1.3rem;
     font-weight: 600;
@@ -95,6 +107,7 @@ body {
     width: 200px;
 }
 
+/* Button styles */
 button {
     background-color: var(--accent-color);
     color: white;
@@ -106,11 +119,13 @@ button {
     transition: transform 0.2s, background-color 0.2s;
 }
 
+/* Button hover effect */
 button:hover {
     background-color: #c0392b;
     transform: scale(1.05);
 }
 
+/* Instructions text styles */
 .instructions {
     margin: 0;
     font-size: 0.85rem;
@@ -126,12 +141,12 @@ button:hover {
     margin: 0.2rem 0;
 }
 
-/* Add hover effect to make it slightly more visible when needed */
+/* Instructions hover effect */
 .instructions:hover {
     opacity: 0.8;
 }
 
-/* Modal styles */
+/* Modal overlay styles */
 .modal {
     display: none;
     position: fixed;
@@ -143,6 +158,7 @@ button:hover {
     background-color: rgba(0,0,0,0.7);
 }
 
+/* Modal content box */
 .modal-content {
     background-color: var(--secondary-color);
     margin: 15% auto;
@@ -152,6 +168,7 @@ button:hover {
     max-width: 600px;
 }
 
+/* Modal close button */
 .close {
     color: var(--text-color);
     float: right;
@@ -169,7 +186,7 @@ button:hover {
     line-height: 1.6;
 }
 
-/* Add animation for value changes */
+/* Animation for value changes */
 @keyframes highlight {
     0% { color: var(--text-color); }
     50% { color: var(--highlight-color); }
@@ -180,6 +197,7 @@ button:hover {
     animation: highlight 0.5s ease-in-out;
 }
 
+/* Exercise sentence styles */
 .exercise-sentence {
     margin-top: 0;
     padding: 1rem;
@@ -197,13 +215,15 @@ button:hover {
 
 .exercise-sentence p {
     margin: 0;
+    white-space: pre-line;  /* Preserve line breaks */
 }
 
-/* Add highlight animation for the sentence too */
+/* Sentence highlight animation */
 .exercise-sentence p.highlight {
     animation: highlight 0.5s ease-in-out;
 }
 
+/* Button container styles */
 .buttons {
     margin-top: 1rem;
     display: flex;
@@ -211,28 +231,32 @@ button:hover {
     gap: 1.5rem;
 }
 
-/* Add media query for mobile devices */
+/* Mobile styles */
 @media screen and (max-width: 768px) {
+    /* Smaller title on mobile */
     .title h1 {
         font-size: 1.5rem;
         margin-bottom: 1rem;
         text-align: center;
     }
 
+    /* Stack items vertically on mobile */
     .exercise-container {
         grid-template-columns: 1fr;
         gap: 1rem;
         margin: 1rem 0;
     }
 
+    /* Smaller exercise box on mobile */
     .exercise-box {
-        width: 300px;  /* Smaller width */
+        width: 300px;
         padding: 1rem;
     }
 
+    /* Adjust row sizes for mobile */
     .exercise-item {
         font-size: 1rem;
-        grid-template-columns: 100px 150px;  /* Smaller columns */
+        grid-template-columns: 100px 150px;
         padding: 0.6rem 1rem;
     }
 
@@ -241,30 +265,35 @@ button:hover {
         width: 150px;
     }
 
+    /* Center content on mobile */
     .right-side {
         padding-left: 0;
         align-items: center;
     }
 
+    /* Adjust sentence display for mobile */
     .exercise-sentence {
         text-align: center;
         padding: 0.5rem;
         font-size: 1rem;
         min-height: 80px;
-        max-width: 300px;  /* Match box width */
+        max-width: 300px;
     }
 
+    /* Stack button and instructions vertically */
     .buttons {
         flex-direction: column;
         align-items: center;
         gap: 0.8rem;
     }
 
+    /* Smaller button on mobile */
     button {
         padding: 0.8rem 1.5rem;
         font-size: 1rem;
     }
 
+    /* Smaller instructions text */
     .instructions {
         text-align: center;
         margin-top: 0.5rem;
@@ -277,7 +306,7 @@ button:hover {
     }
 }
 
-/* Add some padding for very small screens */
+/* Very small screen adjustments */
 @media screen and (max-width: 360px) {
     .container {
         padding: 1rem;
@@ -290,4 +319,16 @@ button:hover {
     button {
         padding: 0.8rem 1.5rem;
     }
-} 
+}
+
+/* Desktop/Mobile sentence format handling */
+#sentenceDisplay::before {
+    content: attr(data-desktop);  /* Show desktop format by default */
+}
+
+/* Switch to mobile format on small screens */
+@media screen and (max-width: 768px) {
+    #sentenceDisplay::before {
+        content: attr(data-mobile);
+    }
+}
