@@ -58,8 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const fretWithSuffix = exercise.fret + getOrdinalSuffix(exercise.fret);
         const stringWithSuffix = exercise.string + getOrdinalSuffix(exercise.string);
         
-        // Determine correct article based on whether voicing starts with a vowel
-        const article = /^[aeiou]/i.test(exercise.voicing) ? 'an' : 'a';
+        // Use "an" only for "Octave" voicing, "a" for everything else (including "Double Octave")
+        const article = exercise.voicing === "Octave" ? 'an' : 'a';
         
         // Desktop format
         const desktopFormat = `Play the ${fretWithSuffix} fret on the ${stringWithSuffix} string.\n` +

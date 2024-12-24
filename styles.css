@@ -343,6 +343,8 @@ button:hover {
     padding: 0.5rem;
     margin-top: 0.5rem;
     cursor: pointer;
+    width: 100%;  /* Take full width to allow centering */
+    text-align: center;  /* Center the text */
 }
 
 .help-button:hover {
@@ -365,5 +367,17 @@ button:hover {
     
     .mobile-only {
         display: block;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .instructions {
+        text-align: center;
+        margin-top: 0.5rem;
+        font-size: 0.75rem;
+        width: 100%;  /* Take full width */
+        display: flex;
+        flex-direction: column;
+        align-items: center;  /* Center all children */
     }
 }
