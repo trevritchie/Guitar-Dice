@@ -4,6 +4,7 @@
     --accent-color: #e74c3c;
     --text-color: #ecf0f1;
     --highlight-color: #2ecc71;
+    --mobile-breakpoint: 768px;  /* Common breakpoint for tablets/mobile */
 }
 
 body {
@@ -208,4 +209,69 @@ button:hover {
     display: flex;
     align-items: center;
     gap: 1.5rem;
+}
+
+/* Add media query for mobile devices */
+@media screen and (max-width: 768px) {
+    .title h1 {
+        font-size: 2rem;  /* Smaller title on mobile */
+        margin-bottom: 1.5rem;
+    }
+
+    .exercise-container {
+        grid-template-columns: 1fr;  /* Stack items vertically on mobile */
+        gap: 1rem;
+    }
+
+    .exercise-box {
+        width: 100%;  /* Full width on mobile */
+        max-width: none;
+        justify-self: center;
+        margin: 0 auto;
+    }
+
+    .right-side {
+        padding-left: 0;  /* Remove left padding */
+        align-items: center;  /* Center items */
+    }
+
+    .exercise-sentence {
+        text-align: center;
+        padding: 0.5rem;
+        font-size: 1.1rem;
+        min-height: 100px;  /* Slightly smaller height for mobile */
+    }
+
+    .buttons {
+        flex-direction: column;  /* Stack button and instructions */
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .instructions {
+        text-align: center;
+        margin-top: 0.5rem;
+    }
+
+    /* Make the modal content take up more space on mobile */
+    .modal-content {
+        width: 90%;
+        margin: 10% auto;
+        padding: 1.5rem;
+    }
+}
+
+/* Add some padding for very small screens */
+@media screen and (max-width: 360px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .exercise-item {
+        padding: 0.8rem 1rem;
+    }
+
+    button {
+        padding: 0.8rem 1.5rem;
+    }
 } 
