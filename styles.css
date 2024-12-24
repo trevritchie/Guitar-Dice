@@ -214,36 +214,36 @@ button:hover {
 /* Add media query for mobile devices */
 @media screen and (max-width: 768px) {
     .title h1 {
-        font-size: 2rem;  /* Smaller title on mobile */
+        font-size: 2rem;
         margin-bottom: 1.5rem;
+        text-align: center;
     }
 
     .exercise-container {
-        grid-template-columns: 1fr;  /* Stack items vertically on mobile */
+        grid-template-columns: 1fr;
         gap: 1rem;
     }
 
     .exercise-box {
-        width: 100%;  /* Full width on mobile */
-        max-width: none;
+        width: 400px;  /* Keep fixed width */
         justify-self: center;
         margin: 0 auto;
     }
 
     .right-side {
-        padding-left: 0;  /* Remove left padding */
-        align-items: center;  /* Center items */
+        padding-left: 0;
+        align-items: center;
     }
 
     .exercise-sentence {
         text-align: center;
         padding: 0.5rem;
         font-size: 1.1rem;
-        min-height: 100px;  /* Slightly smaller height for mobile */
+        min-height: 100px;
     }
 
     .buttons {
-        flex-direction: column;  /* Stack button and instructions */
+        flex-direction: column;
         align-items: center;
         gap: 1rem;
     }
@@ -253,11 +253,9 @@ button:hover {
         margin-top: 0.5rem;
     }
 
-    /* Make the modal content take up more space on mobile */
-    .modal-content {
-        width: 90%;
-        margin: 10% auto;
-        padding: 1.5rem;
+    /* Center all text content */
+    .exercise-sentence p {
+        text-align: center;
     }
 }
 
