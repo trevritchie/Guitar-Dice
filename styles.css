@@ -381,3 +381,20 @@ button:hover {
         align-items: center;  /* Center all children */
     }
 }
+
+/* Modal list styles */
+.modal-content ul ul {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.modal-content a {
+    color: var(--text-color);
+    opacity: 0.8;
+    text-decoration: none;
+}
+
+.modal-content a:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
