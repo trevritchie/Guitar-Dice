@@ -6,9 +6,9 @@ A web-based practice tool for guitarists to explore chord voicings.
 
 Guitar Dice randomly generates chord exercises to help guitarists:
 - Practice chord voicings across the entire fretboard
-- Master the four chord qualities of Barry Harris' 8 note "scales of chords"
+- Master the four chord qualities of Barry Harris's 8 note "scales of chords"
   - [Creation Theory Video](https://youtube.com/shorts/OmWSgjwroLM?si=wppGzLqn-ZotZuqs)
-- Learn the voicings of Thomas Echol's "elevator" system for polyphonic motion
+- Learn the voicings of Thomas Echols's "elevator" system for polyphonic motion
   - [Elevator System Video](https://www.youtube.com/watch?v=qYoSZqWLh7E)
 - Target specific chord tones in their voicings
 - Break out of familiar patterns

@@ -55,19 +55,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to construct the exercise sentence with different formats for desktop/mobile
     function constructSentence(exercise) {
-        const fretWithSuffix = exercise.fret + getOrdinalSuffix(exercise.fret);
         const stringWithSuffix = exercise.string + getOrdinalSuffix(exercise.string);
         
-        // Use "an" only for "Octave" voicing, "a" for everything else (including "Double Octave")
+        // Create the first line based on whether it's an open string
+        const firstLine = exercise.fret === 0 
+            ? `Play the open ${stringWithSuffix} string`
+            : `Play the ${exercise.fret}${getOrdinalSuffix(exercise.fret)} fret on the ${stringWithSuffix} string`;
+        
+        // Use "an" only for "Octave" voicing, "a" for everything else
         const article = exercise.voicing === "Octave" ? 'an' : 'a';
         
         // Desktop format
-        const desktopFormat = `Play the ${fretWithSuffix} fret on the ${stringWithSuffix} string.\n` +
+        const desktopFormat = `${firstLine}.\n` +
                              `Make this note the ${exercise.chordTone} of a ${exercise.chordType} chord\n` +
                              `in ${article} ${exercise.voicing} voicing.`;
         
         // Mobile format
-        const mobileFormat = `Play the ${fretWithSuffix} fret on the ${stringWithSuffix} string.\n` +
+        const mobileFormat = `${firstLine}.\n` +
                             `Make this note the ${exercise.chordTone}\n` +
                             `of a ${exercise.chordType} chord\n` +
                             `in ${article} ${exercise.voicing} voicing.`;
