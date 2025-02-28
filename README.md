@@ -1,6 +1,6 @@
 # 🎸 Guitar Dice 🎲
 
-A web-based practice tool for guitarists to explore chord voicings.
+A web-based practice tool for guitarists to explore chord voicings.  
 Visit [Guitar Dice](https://trevritchie.github.io/Guitar-Dice/) to start practicing!
 
 ## Overview
