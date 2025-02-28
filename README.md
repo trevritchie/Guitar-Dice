@@ -1,6 +1,7 @@
 # 🎸 Guitar Dice 🎲
 
 A web-based practice tool for guitarists to explore chord voicings.
+Visit [Guitar Dice](https://trevritchie.github.io/Guitar-Dice/) to start practicing!
 
 ## Overview
 
@@ -12,10 +13,6 @@ Guitar Dice randomly generates chord exercises to help guitarists:
   - [Elevator System Video](https://www.youtube.com/watch?v=qYoSZqWLh7E)
 - Target specific chord tones in their voicings
 - Break out of familiar patterns
-
-## Try It Out
-
-Visit [Guitar Dice](https://trevritchie.github.io/Guitar-Dice/) to use the tool.
 
 ## Usage
 - Mobile
